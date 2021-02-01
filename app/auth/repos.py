@@ -1,4 +1,4 @@
-from ..infra.models.user import User
+from app.infra.models.user import User
 
 
 # Class to organize operations related to a user
