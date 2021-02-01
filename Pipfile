@@ -8,6 +8,8 @@ flask = "*"
 mongoengine = "*"
 flask-jwt-extended = "*"
 bcrypt = "*"
+python-dotenv = "*"
+dnspython = "*"
 
 [dev-packages]
 

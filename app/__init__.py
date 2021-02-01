@@ -1,9 +1,9 @@
 from flask import Flask
 from mongoengine import connect
 from flask_jwt_extended import JWTManager
-from . import routes
-from .auth.routes import auth_bp
-from .constants import SECRET_KEY
+from app import routes
+from app.auth.routes import auth_bp
+from app.constants import SECRET_KEY, MONGO_URI
 
 
 def create_app():
@@ -15,5 +15,5 @@ def create_app():
     app.config["SECRET_KEY"] = SECRET_KEY
     JWTManager(app)
 
-    connect('heirloom')
+    connect(host=MONGO_URI)
     return app
