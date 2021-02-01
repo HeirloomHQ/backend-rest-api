@@ -11,7 +11,14 @@ Rest API for backend services
 ### To run the development server:
 First run `pipenv install` to install the dependencies.
 
-To run the flask app
+#### Database
+To start the database:
+* `docker-compose up -d`
+
+To stop the database
+* `docker-compose stop`
+
+#### To run the flask app
 * Mac:
   * `./run.sh`
 * Windows: 
