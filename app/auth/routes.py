@@ -23,7 +23,7 @@ def index():
         return jsonify({"msg": response}), code
 
     # Identity can be any data that is json serializable
-    access_token = create_access_token(identity=kwargs["email"])
+    access_token = create_access_token(identity=response["user_id"])
     return jsonify({"access_token": access_token, "user": response}), 200
 
 
@@ -40,5 +40,5 @@ def login():
         return jsonify({"msg": response}), code
 
     # Identity can be any data that is json serializable
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=response["user_id"])
     return jsonify({"access_token": access_token, "user": response}), 200
