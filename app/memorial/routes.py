@@ -4,7 +4,7 @@ from app.memorial import controllers
 memorial_bp = Blueprint('memorial', __name__)
 
 
-@memorial_bp.route('/memorial/view/<creator_email>', methods=['GET'])
+@memorial_bp.route('/memorial/<creator_email>', methods=['GET'])
 def memorials(creator_email):
     response, code = controllers.display(creator_email)
 
@@ -15,8 +15,8 @@ def memorials(creator_email):
 
     return jsonify({"memorial": response}), 200
 
-@memorial_bp.route('/memorial/create', methods=["POST"])
-def index():
+@memorial_bp.route('/memorial/', methods=["POST"])
+def create_memorials():
     if not request.is_json:
         return {"msg": "Missing JSON in request"}, 400
 
