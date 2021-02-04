@@ -13,8 +13,7 @@ class MemorialRepo:
     def get_memorial_by_email(creator_email) -> Memorial:
         memorials = Memorial.objects(creator_email=creator_email)
         return memorials[0] if len(memorials) else None
-    # Todo: Need to figure out how to return all the memorials that
-    # this given user makes
+    # Todo: Need a way to retrieve multiple memorials
 
     @staticmethod
     def save(memorial_id, creator_email, first_name, last_name, description) -> Memorial:

@@ -26,15 +26,7 @@ def create(creator_email, description, first_name, last_name):
     if not utils.is_email(creator_email):
         return "Email must be an actual email", 400
 
-    # Todo allow or reject for multiple users?? if user email exists
-    # already_exists = UserRepo.get_user_by_email(email)
-    # if already_exists != None:
-    #     return "User with email {} already exists".format(email), 400
-    #
-    # # reject if user email exists
-    # already_exists = MemorialRepo.get_memorial_by_email(creator_email)
-    # if already_exists != None:
-    #     return "User with email {} already exists".format(email), 400
+    #Todo: Implement capabilites to allow or reject for multiple memorials for one email
 
     memorial_to_create = {
         "memorial_id": str(uuid.uuid4()),
