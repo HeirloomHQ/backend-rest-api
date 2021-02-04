@@ -1,57 +1,46 @@
-from flask import Blueprint, request, jsonify, Flask
+from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-from app.auth import controllers
+from app.memorial import controllers
 
-memorial_bp = Blueprint('memorial', __name__, url_prefix="/memorial")
-#
-mem_list = [
-    {
-        "id": 0,
-        "Creator": "Buchi O",
-        "Info": "Jane Doe",
-        "Date": "February 3, 2021"
-    },
-    {
-        "id": 1,
-        "Creator": "Andrew M",
-        "Info": "John Doe",
-        "Date": "February 1, 2021"
-    },
-    {
-        "id": 2,
-        "Creator": "Mark P",
-        "Info": "Jimmy Doe",
-        "Date": "January 3, 2021"
-    },
-]
+memorial_bp = Blueprint('memorial', __name__)
 
 
-#
-#
-@memorial_bp.route('/memorials', methods=['GET', 'POST'])
-def memorials():
+@memorial_bp.route('/memorial/view/<creator_email>', methods=['GET'])
+def memorials(creator_email):
     # if not request.is_json:
     #     return {"msg": "Missing JSON in request"}, 400
+    response, code = controllers.display(creator_email)
 
-    if request.method == 'GET':
-        if len(mem_list) > 0:
-            return jsonify(mem_list)
-        else:
-            'Nothing Found', 404
+    if code != 200:
+        return jsonify({"msg": response}), code
 
-    if request.method == 'POST':
-        ID = mem_list[-1]['id'] + 1
-        new_creator = request.form['Creator']
-        new_info = request.form['Info']
-        new_date = request.form['Date']
+        # Todo: Need to figure out authentication requirements
+        # # Identity can be any data that is json serializable
+        # access_token = create_access_token(identity=kwargs["email"])
+        # return jsonify({"access_token": access_token, "user": response}), 200
 
-        new_obj = {
-            "id": ID,
-            "Creator": new_creator,
-            "Info": new_info,
-            "Date": new_date
-        }
+    return jsonify({"memorial": response}), 200
 
-        mem_list.append(new_obj)
-        return jsonify(mem_list), 201
+@memorial_bp.route('/memorial/create', methods=["POST"])
+def index():
+    if not request.is_json:
+        return {"msg": "Missing JSON in request"}, 400
 
+    kwargs = {
+        "creator_email": request.json.get("creator_email", None),
+        "first_name": request.json.get("first_name", None),
+        "last_name": request.json.get( "last_name", None),
+        "description": request.json.get("description", None),
+    }
+
+    response, code = controllers.create(**kwargs)
+
+    if code != 200:
+        return jsonify({"msg": response}), code
+
+    # Todo: Need to figure out authentication requirements
+    # # Identity can be any data that is json serializable
+    # access_token = create_access_token(identity=kwargs["email"])
+    # return jsonify({"access_token": access_token, "user": response}), 200
+
+    return jsonify({"memorial": response}), 200
