@@ -24,3 +24,6 @@ To stop the database
 * Windows: 
   * Run `Set-ExecutionPolicy RemoteSigned` to run scripts
   * `.\run.ps1`
+  
+#### Postman
+* You can import heirloom.postman_collection.json for the latest api routes
