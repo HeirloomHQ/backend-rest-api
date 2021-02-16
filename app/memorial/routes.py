@@ -1,10 +1,12 @@
 from flask import Blueprint, request, jsonify
+from flask_jwt_extended import jwt_required
 from app.memorial import controllers
 
 memorial_bp = Blueprint('memorial', __name__)
 
 
 @memorial_bp.route('/memorial/<creator_email>', methods=['GET'])
+@jwt_required
 def memorials(creator_email):
     response, code = controllers.display(creator_email)
 
@@ -15,7 +17,8 @@ def memorials(creator_email):
 
     return jsonify({"memorial": response}), 200
 
-@memorial_bp.route('/memorial/', methods=["POST"])
+@memorial_bp.route('/memorial', methods=["POST"])
+@jwt_required
 def create_memorials():
     if not request.is_json:
         return {"msg": "Missing JSON in request"}, 400
