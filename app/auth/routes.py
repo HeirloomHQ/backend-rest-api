@@ -30,7 +30,7 @@ def index():
     api_response = jsonify({"user": controller_response})
 
     # Identity can be any data that is json serializable
-    identity = controller_response["user_id"]
+    identity = controller_response["id"]
     access_token = create_access_token(identity=identity)
     refresh_token = create_refresh_token(identity=identity)
 
@@ -55,7 +55,7 @@ def login():
     api_response = jsonify({"user": controller_response})
 
     # Identity can be any data that is json serializable
-    identity = controller_response["user_id"]
+    identity = controller_response["id"]
     access_token = create_access_token(identity=identity)
     refresh_token = create_refresh_token(identity=identity)
 

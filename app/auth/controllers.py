@@ -24,13 +24,12 @@ def signup(email, password, first_name, last_name):
     password_hash = bcrypt.hashpw(password.encode('utf-8'), salt)
 
     user_to_save = {
-        "user_id": str(uuid.uuid4()), "email": email, "first_name": first_name, "last_name": last_name,
+        "email": email, "first_name": first_name, "last_name": last_name,
         "password_hash": password_hash, "salt": salt
     }
 
     # create user
     saved_user = UserRepo.save(**user_to_save)
-
     return saved_user.to_json(), 200
 
 

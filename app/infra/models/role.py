@@ -1,12 +1,15 @@
-from mongoengine import Document, StringField, ObjectIdField, EnumField
+from mongoengine import Document, StringField, ObjectIdField
 
 
 class Role(Document):
-    role_id = StringField(primary_key=True)
     memorial = ObjectIdField()
     user = ObjectIdField()
-    role = EnumField([
-        "creator",
-        "manager",
-        "member",
-    ])
+    role = StringField()
+
+    def to_json(self, *args, **kwargs):
+        return {
+            "id": str(self.id),
+            "memorial": str(self.memorial),
+            "user": str(self.user),
+            "role": self.role
+        }
