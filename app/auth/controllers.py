@@ -6,7 +6,7 @@ from app.auth import utils
 
 def signup(email, password, first_name, last_name):
     # validate input
-    user = {"email": email, "password": password, "first_name": first_name, "last_name": last_name}
+    user = {"email": email, "password": password}
     for field, value in user.items():
         if value is None:
             return "Missing {} parameter".format(field), 400
