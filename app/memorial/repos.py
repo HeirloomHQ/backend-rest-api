@@ -7,17 +7,18 @@ from app.infra.models.role import Role
 class MemorialRepo:
 
     @staticmethod
-    def save(first_name, last_name, description) -> Memorial:
+    def create(first_name, last_name, description) -> Memorial:
         memorial = Memorial(first_name=first_name, last_name=last_name, description=description)
         memorial.save()
         return memorial
 
     @staticmethod
     def get_by_id(memorial_id) -> [Memorial]:
-        return Memorial.objects(id=memorial_id)[0]
+        memorial_list = Memorial.objects(id=memorial_id)
+        return memorial_list[0] if len(memorial_list) > 0 else None
 
     @staticmethod
-    def get_by_user_id(user_id):
+    def get_by_user_id(user_id)-> ([Memorial], [Role]):
         roles = Role.objects(user=user_id)
 
         memorial_ids = [role.memorial for role in roles]
@@ -37,10 +38,11 @@ class RoleRepo:
 
     @staticmethod
     def get_by_user_id(id) -> Role:
-        return Role.objects(user=id)[0]
+        role_list = Role.objects(user=id)
+        return role_list[0] if len(role_list) > 0 else None
 
     @staticmethod
-    def save(role, user, memorial) -> Role:
+    def create(role, user, memorial) -> Role:
         role = Role(role=role, user=user, memorial=memorial)
         role.save()
         return role

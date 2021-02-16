@@ -1,4 +1,3 @@
-import uuid
 from app.memorial.repos import MemorialRepo, RoleRepo, RoleTypes
 
 
@@ -22,7 +21,7 @@ def create(creator_id, description, first_name, last_name):
         "last_name": last_name,
         "description": description
     }
-    created_memorial = MemorialRepo.save(**memorial_to_create)
+    created_memorial = MemorialRepo.create(**memorial_to_create)
 
     # create role
     role = {
@@ -31,6 +30,6 @@ def create(creator_id, description, first_name, last_name):
         "memorial": str(created_memorial.id)
     }
     print(role)
-    RoleRepo.save(**role)
+    RoleRepo.create(**role)
 
     return created_memorial.to_json(), 200

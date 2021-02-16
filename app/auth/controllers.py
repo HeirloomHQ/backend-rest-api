@@ -29,7 +29,7 @@ def signup(email, password, first_name, last_name):
     }
 
     # create user
-    saved_user = UserRepo.save(**user_to_save)
+    saved_user = UserRepo.create(**user_to_save)
     return saved_user.to_json(), 200
 
 

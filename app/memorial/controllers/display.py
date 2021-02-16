@@ -8,7 +8,7 @@ def display_all_user_memorials(user_id):
     memorial_docs, role_docs = MemorialRepo.get_by_user_id(user_id)
 
     if len(memorial_docs) == 0:
-        return "No memorials for user", 404
+        return "No memorials found for the authenticated user", 404
 
     memorials = [memorial_doc.to_json() for memorial_doc in memorial_docs]
     roles = [role_doc.to_json() for role_doc in role_docs]
@@ -30,7 +30,7 @@ def display_single_memorial_for_user(user_id, memorial_id):
     memorial_doc = MemorialRepo.get_by_id(memorial_id)
     role_doc = RoleRepo.get_by_user_id(user_id)
 
-    if memorial_doc == None:
-        return "No memorials for user", 404
+    if memorial_doc == None or role_doc == None:
+        return "Memorial not found or authenticated user does not have access", 404
 
     return (memorial_doc.to_json(), role_doc.to_json()), 200

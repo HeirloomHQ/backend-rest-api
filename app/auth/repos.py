@@ -6,8 +6,8 @@ class UserRepo:
 
     @staticmethod
     def get_user_by_id(id) -> User:
-        user = User.objects(id=id)[0]
-        return user
+        users = User.objects(id=id)
+        return users[0] if len(users) else None
 
     @staticmethod
     def get_user_by_email(email) -> User:
@@ -15,7 +15,7 @@ class UserRepo:
         return users[0] if len(users) else None
 
     @staticmethod
-    def save(email, first_name, last_name, password_hash, salt) -> User:
+    def create(email, first_name, last_name, password_hash, salt) -> User:
         user = User(email=email, first_name=first_name, last_name=last_name,
                     password_hash=password_hash, salt=salt)
         user.save()
