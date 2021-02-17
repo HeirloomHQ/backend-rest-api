@@ -35,7 +35,7 @@ class RoleTypes(Enum):
     * CREATOR = highest permission level
     * MEMBER = lowest permission level
     """
-    CREATOR = auto()
+    OWNER = auto()
     MANAGER = auto()
     MEMBER = auto()
 

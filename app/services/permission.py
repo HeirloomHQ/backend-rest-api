@@ -9,6 +9,7 @@ class Action(Enum):
     MANAGE = "canManage"
     POST = "canPost"
     EDIT_PRIVACY = "canEditPrivacy"
+    DELETE = "canDelete"
 
 
 def can_user_execute(action: Action, role: Role, memorial: Memorial):

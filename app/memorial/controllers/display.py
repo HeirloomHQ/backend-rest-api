@@ -15,11 +15,23 @@ def display_all_user_memorials(user_id):
     roles = [role_doc.to_json() for role_doc in role_docs]
 
     # build a dict of memorial ids to role for the user
-    role_response = {}
+    role_map = {}
     for role in roles:
-        role_response[role["memorial"]] = role["role"]
+        role_map[role["memorial"]] = role
 
-    return (memorials, role_response), 200
+    # this is to make sure that a user still has view permission
+    # just bc user has a role doesn't mean they can view
+    memorials_response = []
+    role_response = {}
+    for memorial in memorials:
+        role = role_map[memorial.id]
+        can_view = can_user_execute(Action.VIEW, role, memorial)
+
+        if can_view:
+            memorials_response.append(memorial)
+            role_response[memorial.id] = role["role"]
+
+    return (memorials_response, role_response), 200
 
 
 def display_single_memorial_for_user(user_id, memorial_id):
