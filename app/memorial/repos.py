@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from app.infra.models.memorial import Memorial
+from app.infra.models.memorial import Memorial, PageSettings, PrivacySettings
 from app.infra.models.role import Role
 
 
@@ -8,7 +8,9 @@ class MemorialRepo:
 
     @staticmethod
     def create(first_name, last_name, description) -> Memorial:
-        memorial = Memorial(first_name=first_name, last_name=last_name, description=description)
+        pg_settings = PageSettings(first_name=first_name, last_name=last_name, description=description)
+        pr_settings = PrivacySettings()
+        memorial = Memorial(page_settings=pg_settings, privacy_settings=pr_settings)
         memorial.save()
         return memorial
 
@@ -28,6 +30,11 @@ class MemorialRepo:
 
 
 class RoleTypes(Enum):
+    """
+    This class represents the roles for a user in a memorial
+    * CREATOR = highest permission level
+    * MEMBER = lowest permission level
+    """
     CREATOR = auto()
     MANAGER = auto()
     MEMBER = auto()

@@ -32,4 +32,4 @@ def create(creator_id, description, first_name, last_name):
     print(role)
     RoleRepo.create(**role)
 
-    return created_memorial.to_json(), 200
+    return created_memorial.to_json(), 201
