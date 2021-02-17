@@ -18,12 +18,14 @@ class PrivacySettings(EmbeddedDocument):
     can_post = StringField(default="CREATOR")
     can_view = StringField(default="CREATOR")
     can_manage = StringField(default="CREATOR")
+    can_edit_privacy = StringField(default="CREATOR")
 
     def to_json(self, *args, **kwargs):
         return {
             "canPost": self.can_post,
             "canView": self.can_view,
-            "canManage": self.can_manage
+            "canManage": self.can_manage,
+            "canEditPrivacy": self.can_edit_privacy
         }
 
 
