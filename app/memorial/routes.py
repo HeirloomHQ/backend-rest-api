@@ -1,12 +1,12 @@
 from flask import Blueprint, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, jwt_optional, get_jwt_identity
 from app.memorial.controllers import display
 from app.memorial.controllers.create import create
 
 memorial_bp = Blueprint('memorial', __name__, url_prefix="/memorials")
 
 @memorial_bp.route('/<memorial_id>', methods=['GET'])
-@jwt_required
+@jwt_optional
 def memorials(memorial_id):
     user_id = get_jwt_identity()
     response, code = display.display_single_memorial_for_user(user_id, memorial_id)

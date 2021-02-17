@@ -1,4 +1,5 @@
 from app.memorial.repos import MemorialRepo, RoleRepo
+from app.services.permission import Action, can_user_execute
 
 
 def display_all_user_memorials(user_id):
@@ -20,17 +21,19 @@ def display_all_user_memorials(user_id):
 
     return (memorials, role_response), 200
 
+
 def display_single_memorial_for_user(user_id, memorial_id):
-    if not user_id:
-        return {"msg": "Missing userID parameter"}, 400
     if not memorial_id:
         return {"msg": "Missing memorialID parameter"}, 400
-
 
     memorial_doc = MemorialRepo.get_by_id(memorial_id)
     role_doc = RoleRepo.get_by_user_id(user_id)
 
-    if memorial_doc == None or role_doc == None:
-        return "Memorial not found or authenticated user does not have access", 404
+    if memorial_doc == None:
+        return "Memorial not found", 404
 
-    return (memorial_doc.to_json(), role_doc.to_json()), 200
+    allowed = can_user_execute(Action.VIEW, role_doc, memorial_doc)
+    if not allowed:
+        return "User does not have access to view the heirloom", 401
+
+    return (memorial_doc.to_json(), role_doc.to_json() if role_doc != None else None), 200
