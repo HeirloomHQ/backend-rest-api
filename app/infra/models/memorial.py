@@ -13,8 +13,7 @@ class PageSettings(EmbeddedDocument):
         return {
             "firstName": self.first_name,
             "lastName": self.last_name,
-            "description": self.description,
-            "online": self.online,
+            "description": self.description
         }
 
 

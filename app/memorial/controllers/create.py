@@ -25,7 +25,7 @@ def create(creator_id, description, first_name, last_name):
 
     # create role
     role = {
-        "role": RoleTypes.CREATOR.name,
+        "role": RoleTypes.OWNER.name,
         "user": creator_id,
         "memorial": str(created_memorial.id)
     }

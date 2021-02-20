@@ -11,25 +11,24 @@ def display_all_user_memorials(user_id):
     if len(memorial_docs) == 0:
         return "No memorials found for the authenticated user", 404
 
-    memorials = [memorial_doc.to_json() for memorial_doc in memorial_docs]
-    roles = [role_doc.to_json() for role_doc in role_docs]
-
     # build a dict of memorial ids to role for the user
     role_map = {}
-    for role in roles:
-        role_map[role["memorial"]] = role
+    for role in role_docs:
+        m_id = str(role.memorial)
+        role_map[m_id] = role
 
     # this is to make sure that a user still has view permission
     # just bc user has a role doesn't mean they can view
     memorials_response = []
     role_response = {}
-    for memorial in memorials:
-        role = role_map[memorial.id]
+    for memorial in memorial_docs:
+        m_id = str(memorial.id)
+        role = role_map[m_id]
         can_view = can_user_execute(Action.VIEW, role, memorial)
 
         if can_view:
-            memorials_response.append(memorial)
-            role_response[memorial.id] = role["role"]
+            memorials_response.append(memorial.to_json())
+            role_response[m_id] = role.role
 
     return (memorials_response, role_response), 200
 
