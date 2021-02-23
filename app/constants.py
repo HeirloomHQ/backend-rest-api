@@ -3,10 +3,12 @@ import os
 from pathlib import Path
 
 IS_PROD = os.environ.get("FLASK_ENV") == "production"
+DOMAIN = "http://localhost:5000"
+CLIENT = "https://localhost:3000"
 
 if not IS_PROD:
     load_dotenv()
-    sendgrid_file = Path("../sendgrid.env").resolve()
+    sendgrid_file = Path("./sendgrid.env").resolve()
     load_dotenv(sendgrid_file)
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
