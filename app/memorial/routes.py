@@ -18,7 +18,7 @@ def memorials(memorial_id):
     return {"memorial": memorial, "role": role}, 200
 
 @memorial_bp.route('', methods=['GET', 'POST'])
-@jwt_required
+@jwt_required()
 def memorial():
     if request.method == "GET":
         user_id = get_jwt_identity()
@@ -44,7 +44,7 @@ def memorial():
 
         response, code = create.memorial(**kwargs)
 
-        if code != 200:
+        if code != 201:
             return {"msg": response}, code
 
-        return {"memorial": response}, 200
+        return {"memorial": response}, 201
