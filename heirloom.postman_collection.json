@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"test\"\n}",
+							"raw": "{\n    \"email\": \"manzanero.andrew@gmail.com\",\n    \"password\": \"test\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -205,7 +205,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/invites?memorial=6035300f50957613070efa83",
+							"raw": "http://localhost:5000/invites?memorial=6035e134d72a5b4e337c2deb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -217,8 +217,59 @@
 							"query": [
 								{
 									"key": "memorial",
-									"value": "6035300f50957613070efa83"
+									"value": "6035e134d72a5b4e337c2deb"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept invite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/invites/6036b85d71b1c4f3e06eb5a6/activation?token=6e1f1a0a-25f1-4e8e-b05b-9f3d5c61f072",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"invites",
+								"6036b85d71b1c4f3e06eb5a6",
+								"activation"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "6e1f1a0a-25f1-4e8e-b05b-9f3d5c61f072"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "Get user profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"profile"
 							]
 						}
 					},
