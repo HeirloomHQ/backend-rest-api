@@ -80,3 +80,22 @@ def settings(memorial_id):
         return {"msg": response}, code
 
     return {"memorial": response}, 200
+
+@memorial_bp.route('/<memorial_id>/permission_settings', methods=['PUT'])
+@jwt_required
+def permission_settings(memorial_id):
+    user_id = get_jwt_identity()
+    kwargs = {
+        "canPost": request.json.get("canPost", None),
+        "canView": request.json.get("canView", None),
+        "canManage": request.json.get("canManage", None),
+        "canDelete": request.json.get("canDelete", None)
+    }
+
+    response, code = edit.edit_memorial_settings(user_id, memorial_id, **kwargs)
+
+    if code != 200:
+        return {"msg": response}, code
+
+    return {"memorial": response}, 200
+
