@@ -1,5 +1,5 @@
 from app.auth.utils import is_email
-from app.auth.repos import UserRepo
+from app.profile.repos import UserRepo
 from app.constants import CLIENT, INVITE_DAYS_TTL
 from app.memorial.repos import MemorialRepo, RoleRepo
 from app.invites.repos import InviteRepo
