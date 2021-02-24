@@ -5,7 +5,7 @@ from app.profile import controllers
 user_bp = Blueprint('user', __name__, url_prefix='/profile')
 
 
-@user_bp.route('/auth/profile', methods=['GET'])
+@user_bp.route('', methods=['GET'])
 @jwt_required
 def user():
     user_id = get_jwt_identity()

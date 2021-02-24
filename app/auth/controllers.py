@@ -1,6 +1,6 @@
 import bcrypt
 import uuid
-from app.auth.repos import UserRepo
+from app.profile.repos import UserRepo
 from app.auth import utils
 
 
