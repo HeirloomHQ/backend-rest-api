@@ -40,6 +40,12 @@ def memorial():
             "first_name": request.json.get("firstName", None),
             "last_name": request.json.get("lastName", None),
             "description": request.json.get("description", None),
+            "born": request.json.get("born", None),
+            "died": request.json.get("died", None),
+            "bio": request.json.get("bio", None),
+            "home_town": request.json.get("homeTown", None),
+            "cover_photo": request.json.get("coverPhoto", None),
+            "page_theme": request.json.get("pageTheme", None),
         }
 
         response, code = create.memorial(**kwargs)
