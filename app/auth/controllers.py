@@ -1,5 +1,5 @@
 import bcrypt
-from app.auth.repos import UserRepo
+from app.profile.repos import UserRepo
 from app.auth import utils
 from app.invites.repos import InviteRepo
 from app.invites import utils as invite_utils

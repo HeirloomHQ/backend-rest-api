@@ -1,5 +1,5 @@
 from app.invites.repos import InviteRepo
-from app.auth.repos import UserRepo
+from app.profile.repos import UserRepo
 from app.memorial.repos import RoleRepo, RoleTypes
 from app.constants import CLIENT
 from app.invites import utils
