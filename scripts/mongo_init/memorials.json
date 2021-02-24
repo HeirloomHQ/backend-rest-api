@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "6035e134d72a5b4e337c2deb"
+  },
+  "first_name": "test",
+  "last_name": "test",
+  "description": "test-am/email-invites",
+  "born": "Jan 2nd",
+  "died": "Jan 3rd",
+  "bio": "one helluva test",
+  "home_town": "LA",
+  "cover_photo": "http://profilepic",
+  "page_theme": "#FF7F59",
+  "can_post": "MANAGER",
+  "can_view": "MANAGER",
+  "can_manage": "MANAGER",
+  "can_delete": "OWNER"
+},{
+  "_id": {
+    "$oid": "6035e243d72a5b4e337c2ded"
+  },
+  "first_name": "test",
+  "last_name": "test",
+  "description": "user 1",
+  "born": "Jan 2nd",
+  "died": "Jan 3rd",
+  "bio": "ONE helluva test",
+  "home_town": "LA",
+  "cover_photo": "http://profilepic",
+  "page_theme": "#FF7F59",
+  "can_post": "MANAGER",
+  "can_view": "MANAGER",
+  "can_manage": "MANAGER",
+  "can_delete": "OWNER"
+}]

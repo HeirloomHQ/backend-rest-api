@@ -9,13 +9,13 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "http://localhost:5000/auth/signup",
+					"name": "Sign up",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test2@test.com\",\n    \"password\": \"test\"\n}",
+							"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"test\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -38,7 +38,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:5000/auth/login",
+					"name": "Log in",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -61,6 +61,164 @@
 							"path": [
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "memorial",
+			"item": [
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/memorials/6035e134d72a5b4e337c2deb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memorials",
+								"6035e134d72a5b4e337c2deb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"test\",\n    \"lastName\": \"test\",\n    \"description\": \"test-am/email-invites\",\n    \"born\": \"Jan 2nd\",\n    \"died\": \"Jan 3rd\",\n    \"bio\": \"one helluva test\",\n    \"homeTown\": \"LA\",\n    \"coverPhoto\": \"http://profilepic\",\n    \"pageTheme\": \"#FF7F59\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/memorials",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/memorials",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memorials"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "invites",
+			"item": [
+				{
+					"name": "Send invites",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emails\": [\"manzanero.andrew@gmail.com\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/invites?memorial=6035300f50957613070efa83",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"invites"
+							],
+							"query": [
+								{
+									"key": "memorial",
+									"value": "6035300f50957613070efa83"
+								}
 							]
 						}
 					},

@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "6035e134d72a5b4e337c2dec"
+  },
+  "memorial": {
+    "$oid": "6035e134d72a5b4e337c2deb"
+  },
+  "user": {
+    "$oid": "60352fdae905671e24889dfb"
+  },
+  "role": "OWNER"
+},{
+  "_id": {
+    "$oid": "6035e243d72a5b4e337c2dee"
+  },
+  "memorial": {
+    "$oid": "6035e243d72a5b4e337c2ded"
+  },
+  "user": {
+    "$oid": "60353086ebd856702a803f50"
+  },
+  "role": "OWNER"
+},{
+  "_id": {
+    "$oid": "6035e2ebafa4bec9cda71c1d"
+  },
+  "memorial": {
+    "$oid": "6035e134d72a5b4e337c2deb"
+  },
+  "user": {
+    "$oid": "60353086ebd856702a803f50"
+  },
+  "role": "MANAGER"
+}]
