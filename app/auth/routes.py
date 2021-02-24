@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import (
     create_access_token, create_refresh_token,
     set_access_cookies, set_refresh_cookies, unset_jwt_cookies,
-    jwt_refresh_token_required, get_jwt_identity
+    jwt_required, get_jwt_identity
 )
 from app.auth import controllers
 from app.constants import MAX_REFRESH
@@ -64,7 +64,7 @@ def login():
     return api_response, 200
 
 @auth_bp.route('/refresh', methods=['POST'])
-@jwt_refresh_token_required
+@jwt_required(refresh=True)
 def refresh():
     # Create the new access token
     user_id = get_jwt_identity()

@@ -1,5 +1,5 @@
 from app.memorial.repos import MemorialRepo, RoleRepo, RoleTypes
-
+from app.memorial.utils import create_owner_role
 
 def create(creator_id, description, first_name,
            last_name, born, died,
@@ -37,11 +37,6 @@ def create(creator_id, description, first_name,
     created_memorial = MemorialRepo.create(**memorial_to_create)
 
     # create role
-    role = {
-        "role": RoleTypes.OWNER.name,
-        "user": creator_id,
-        "memorial": str(created_memorial.id)
-    }
-    RoleRepo.create(**role)
+    create_owner_role(creator_id, created_memorial.id)
 
     return created_memorial.to_json(), 201
