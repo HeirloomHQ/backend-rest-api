@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "6035300f50957613070efa83"
+  },
+  "page_settings": {
+    "first_name": "test2",
+    "last_name": "test2",
+    "description": "test"
+  },
+  "privacy_settings": {
+    "can_post": "MANAGER",
+    "can_view": "MANAGER",
+    "can_manage": "MANAGER",
+    "can_edit_privacy": "MANAGER",
+    "can_delete": "OWNER"
+  }
+},{
+  "_id": {
+    "$oid": "60353098ebd856702a803f51"
+  },
+  "page_settings": {
+    "first_name": "test",
+    "last_name": "test",
+    "description": "test"
+  },
+  "privacy_settings": {
+    "can_post": "MANAGER",
+    "can_view": "MANAGER",
+    "can_manage": "MANAGER",
+    "can_edit_privacy": "MANAGER",
+    "can_delete": "OWNER"
+  }
+}]
