@@ -20,9 +20,9 @@ def can_user_execute(action: Action, role: Role, memorial: Memorial):
     if type(memorial) != Memorial:
         raise ValueError("memorial must be of type Memorial")
 
-    privacy_settings = memorial.privacy_settings.to_json()
+    memorial_dict = memorial.to_json()
 
-    anyone_can_execute = privacy_settings[action.value] == ""
+    anyone_can_execute = memorial_dict[action.value] == ""
 
     # if anyone can execute, then no need to proceed
     if anyone_can_execute:
@@ -34,6 +34,6 @@ def can_user_execute(action: Action, role: Role, memorial: Memorial):
 
     # this code checks to see if the role the user has is within the required permission for the action
     role_enum = RoleTypes[role.role]
-    max_role = RoleTypes[privacy_settings[action.value]]
+    max_role = RoleTypes[memorial_dict[action.value]]
 
     return role_enum.value <= max_role.value

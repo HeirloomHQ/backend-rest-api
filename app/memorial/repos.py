@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from app.infra.models.memorial import Memorial, PageSettings, PrivacySettings
+from app.infra.models.memorial import Memorial
 from app.infra.models.role import Role
 
 
@@ -12,7 +12,7 @@ class MemorialRepo:
                bio, home_town,
                cover_photo, page_theme
                ) -> Memorial:
-        pg_settings = PageSettings(
+        memorial = Memorial(
             first_name=first_name,
             last_name=last_name,
             description=description,
@@ -20,9 +20,7 @@ class MemorialRepo:
             bio=bio, home_town=home_town,
             cover_photo=cover_photo,
             page_theme=page_theme
-            )
-        pr_settings = PrivacySettings()
-        memorial = Memorial(page_settings=pg_settings, privacy_settings=pr_settings)
+        )
         memorial.save()
         return memorial
 
@@ -32,7 +30,7 @@ class MemorialRepo:
         return memorial_list[0] if len(memorial_list) > 0 else None
 
     @staticmethod
-    def get_by_user_id(user_id)-> ([Memorial], [Role]):
+    def get_by_user_id(user_id) -> ([Memorial], [Role]):
         roles = Role.objects(user=user_id)
 
         memorial_ids = [role.memorial for role in roles]

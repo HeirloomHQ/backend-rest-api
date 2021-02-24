@@ -1,33 +1,35 @@
 [{
   "_id": {
-    "$oid": "6035300f50957613070efa83"
+    "$oid": "6035e134d72a5b4e337c2deb"
   },
-  "page_settings": {
-    "first_name": "test2",
-    "last_name": "test2",
-    "description": "test"
-  },
-  "privacy_settings": {
-    "can_post": "MANAGER",
-    "can_view": "MANAGER",
-    "can_manage": "MANAGER",
-    "can_edit_privacy": "MANAGER",
-    "can_delete": "OWNER"
-  }
+  "first_name": "test",
+  "last_name": "test",
+  "description": "test-am/email-invites",
+  "born": "Jan 2nd",
+  "died": "Jan 3rd",
+  "bio": "one helluva test",
+  "home_town": "LA",
+  "cover_photo": "http://profilepic",
+  "page_theme": "#FF7F59",
+  "can_post": "MANAGER",
+  "can_view": "MANAGER",
+  "can_manage": "MANAGER",
+  "can_delete": "OWNER"
 },{
   "_id": {
-    "$oid": "60353098ebd856702a803f51"
+    "$oid": "6035e243d72a5b4e337c2ded"
   },
-  "page_settings": {
-    "first_name": "test",
-    "last_name": "test",
-    "description": "test"
-  },
-  "privacy_settings": {
-    "can_post": "MANAGER",
-    "can_view": "MANAGER",
-    "can_manage": "MANAGER",
-    "can_edit_privacy": "MANAGER",
-    "can_delete": "OWNER"
-  }
+  "first_name": "test",
+  "last_name": "test",
+  "description": "user 1",
+  "born": "Jan 2nd",
+  "died": "Jan 3rd",
+  "bio": "ONE helluva test",
+  "home_town": "LA",
+  "cover_photo": "http://profilepic",
+  "page_theme": "#FF7F59",
+  "can_post": "MANAGER",
+  "can_view": "MANAGER",
+  "can_manage": "MANAGER",
+  "can_delete": "OWNER"
 }]
