@@ -1,7 +1,9 @@
 from app.infra.models.user import User
 
 
-class UserInfo:
+# Class to organize operations related to a user
+class UserRepo:
+
     @staticmethod
     def get_user_by_id(id) -> User:
         user = User.objects(id=id)[0]
@@ -9,8 +11,8 @@ class UserInfo:
 
     @staticmethod
     def get_user_by_email(email) -> User:
-        user = User.objects(email=email)
-        return user[0] if len(user) else None
+        users = User.objects(email=email)
+        return users[0] if len(users) else None
 
     @staticmethod
     def save(user_id, email, first_name, last_name, password_hash, salt) -> User:

@@ -1,13 +1,15 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.profile import controllers
 
-user_bp = Blueprint('user', __name__)
+user_bp = Blueprint('user', __name__, url_prefix='/profile')
+
 
 @user_bp.route('/auth/profile', methods=['GET'])
 @jwt_required
-def user(user_email):
-    response, code = controllers.display(user_email)
+def user():
+    user_id = get_jwt_identity()
+    response, code = controllers.display(user_id)
 
     if code != 200:
         return jsonify({"msg": response}), code
