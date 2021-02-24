@@ -1,10 +1,11 @@
 from app.auth.utils import is_email
 from app.auth.repos import UserRepo
-from app.constants import CLIENT
+from app.constants import CLIENT, INVITE_DAYS_TTL
 from app.memorial.repos import MemorialRepo, RoleRepo
 from app.invites.repos import InviteRepo
 from app.services import email as email_service, permission
 from uuid import uuid4
+from datetime import  datetime, timedelta
 
 
 def invite(inviter_id, memorial_id, emails: [str]):
@@ -27,12 +28,15 @@ def invite(inviter_id, memorial_id, emails: [str]):
     # create invites
     inviter = UserRepo.get_user_by_id(inviter_id)
     invites = []
+
+    expiration_date = str(datetime.utcnow() + timedelta(days=INVITE_DAYS_TTL))
     for email in emails:
         invite = {
             "inviter_id": inviter_id,
             "invitee_email": email,
             "token":str(uuid4()),
-            "memorial": memorial_id
+            "memorial": memorial_id,
+            "expiration_date": expiration_date
         }
         invites.append(invite)
 
@@ -44,7 +48,7 @@ def invite(inviter_id, memorial_id, emails: [str]):
         email_service.send_invitation_email(
             invite.invitee_email,
             inviter.first_name,
-            CLIENT + "/api/invites/{}/activation?token={}".format(memorial_id, str(invite.id), invite.token)
+            CLIENT + "/api/invites/{}/activation?token={}".format(str(invite.id), invite.token)
         )
 
     return "Invites sent", 202

@@ -1,16 +1,21 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, redirect
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from app.invites.controllers import create
+from app.invites.controllers import create, get
 
 invite_bp = Blueprint('invites', __name__, url_prefix="/invites")
 
 
 @invite_bp.route('/<invite_id>/activation', methods=['GET'])
-@jwt_required()
-def activate_invite():
+def activate_invite(invite_id):
     # do activate invite stuff
+    token = request.args.get("token", None)
 
-    return {"msg": "good to go"}, 200
+    response, code = get.get_activation(invite_id, token)
+
+    if code // 100 >= 4:
+        return {"msg": response}, code
+
+    return redirect(response)
 
 
 @invite_bp.route('', methods=['POST'])
