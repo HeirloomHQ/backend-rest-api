@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.profile import controllers
 
@@ -12,6 +12,6 @@ def user():
     response, code = controllers.display(user_id)
 
     if code != 200:
-        return jsonify({"msg": response}), code
+        return {"msg": response}, code
 
-    return jsonify({"user": response}), 200
+    return {"user": response}, 200
