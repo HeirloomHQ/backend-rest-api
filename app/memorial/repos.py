@@ -7,8 +7,20 @@ from app.infra.models.role import Role
 class MemorialRepo:
 
     @staticmethod
-    def create(first_name, last_name, description) -> Memorial:
-        pg_settings = PageSettings(first_name=first_name, last_name=last_name, description=description)
+    def create(first_name, last_name, description,
+               born, died,
+               bio, home_town,
+               cover_photo, page_theme
+               ) -> Memorial:
+        pg_settings = PageSettings(
+            first_name=first_name,
+            last_name=last_name,
+            description=description,
+            born=born, died=died,
+            bio=bio, home_town=home_town,
+            cover_photo=cover_photo,
+            page_theme=page_theme
+            )
         pr_settings = PrivacySettings()
         memorial = Memorial(page_settings=pg_settings, privacy_settings=pr_settings)
         memorial.save()

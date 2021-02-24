@@ -1,7 +1,10 @@
 from app.memorial.repos import MemorialRepo, RoleRepo, RoleTypes
 
 
-def create(creator_id, description, first_name, last_name):
+def create(creator_id, description, first_name,
+           last_name, born, died,
+           bio, home_town,
+           cover_photo, page_theme):
     """
     This controller
     * creates a new memorial
@@ -10,7 +13,13 @@ def create(creator_id, description, first_name, last_name):
 
     # validate input
     memorial = {"description": description,
-                "first_name": first_name, "last_name": last_name}
+                "first_name": first_name,
+                "last_name": last_name,
+                "born": born, "died": died,
+                "bio": bio, "home_town": home_town,
+                "cover_photo": cover_photo,
+                "page_theme": page_theme
+                }
     for field, value in memorial.items():
         if value is None:
             return "Missing {} parameter".format(field), 400
@@ -19,7 +28,11 @@ def create(creator_id, description, first_name, last_name):
     memorial_to_create = {
         "first_name": first_name,
         "last_name": last_name,
-        "description": description
+        "description": description,
+        "born": born, "died": died,
+        "bio": bio, "home_town": home_town,
+        "cover_photo": cover_photo,
+        "page_theme": page_theme
     }
     created_memorial = MemorialRepo.create(**memorial_to_create)
 

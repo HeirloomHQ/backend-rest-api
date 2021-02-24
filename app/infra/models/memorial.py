@@ -2,18 +2,31 @@ from mongoengine import (
      Document, EmbeddedDocument,
      StringField, EmbeddedDocumentField
 )
+import datetime
 
 
 class PageSettings(EmbeddedDocument):
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
     description = StringField(max_length=140)
+    born = StringField(max_length=80)
+    died = StringField(max_length=80)
+    bio = StringField(max_length=80)
+    home_town = StringField(max_length=50)
+    cover_photo = StringField(max_length=80)
+    page_theme = StringField(max_length=10)
 
     def to_json(self, *args, **kwargs):
         return {
             "firstName": self.first_name,
             "lastName": self.last_name,
-            "description": self.description
+            "description": self.description,
+            "born": self.born,
+            "died": self.died,
+            "bio": self.bio,
+            "homeTown": self.home_town,
+            "coverPhoto": self.cover_photo,
+            "pageTheme": self.page_theme
         }
 
 
