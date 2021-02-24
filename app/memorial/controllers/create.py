@@ -42,7 +42,6 @@ def create(creator_id, description, first_name,
         "user": creator_id,
         "memorial": str(created_memorial.id)
     }
-    print(role)
     RoleRepo.create(**role)
 
     return created_memorial.to_json(), 201

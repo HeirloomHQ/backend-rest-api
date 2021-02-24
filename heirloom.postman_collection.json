@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test2@test.com\",\n    \"password\": \"test\"\n}",
+							"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"test\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -124,7 +124,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/memorials/602c2056b24aec59f1e2fea0",
+							"raw": "http://localhost:5000/memorials/6035e134d72a5b4e337c2deb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -132,7 +132,7 @@
 							"port": "5000",
 							"path": [
 								"memorials",
-								"602c2056b24aec59f1e2fea0"
+								"6035e134d72a5b4e337c2deb"
 							]
 						}
 					},
@@ -145,7 +145,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"test\",\n    \"lastName\": \"test\",\n    \"description\": \"test\"\n}",
+							"raw": "{\n    \"firstName\": \"test\",\n    \"lastName\": \"test\",\n    \"description\": \"test-am/email-invites\",\n    \"born\": \"Jan 2nd\",\n    \"died\": \"Jan 3rd\",\n    \"bio\": \"one helluva test\",\n    \"homeTown\": \"LA\",\n    \"coverPhoto\": \"http://profilepic\",\n    \"pageTheme\": \"#FF7F59\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -180,6 +180,45 @@
 							"port": "5000",
 							"path": [
 								"memorials"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "invites",
+			"item": [
+				{
+					"name": "Send invites",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emails\": [\"manzanero.andrew@gmail.com\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/invites?memorial=6035300f50957613070efa83",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"invites"
+							],
+							"query": [
+								{
+									"key": "memorial",
+									"value": "6035300f50957613070efa83"
+								}
 							]
 						}
 					},
