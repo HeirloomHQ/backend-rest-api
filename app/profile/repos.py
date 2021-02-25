@@ -20,3 +20,10 @@ class UserRepo:
                     password_hash=password_hash, salt=salt)
         user.save()
         return user
+
+#     Option two
+# Create get by ids which takes in user ids and returns a list of users
+    @staticmethod
+    def get_users_by_ids(ids) -> User:
+        users = User.objects(id__in=ids)
+        return users

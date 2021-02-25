@@ -63,3 +63,9 @@ class RoleRepo:
         role = Role(role=role, user=user, memorial=memorial)
         role.save()
         return role
+
+#     Get by memorial_id / role_docs
+#    Takes in a memorial Id
+#    Returns list of role_ list
+
+#     Get all user with a role with said memorial_id

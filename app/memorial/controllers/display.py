@@ -57,12 +57,27 @@ def display_members_for_single_memorial(memorial_id):
         return {"msg": "Missing memorialID parameter"}, 400
 
     memorial_doc = MemorialRepo.get_by_id(memorial_id)
+    # Rolerepo get_by_memorial_id(memorial_is) -> role_docs
 
+    # First option
+    # Loop through all and call uerRepo get_by_id(using role_docs)
+    # Second Option
+    # New user method called get_by_ids(list of user ids which will be coming from the role docs -> role_doc.user)
+    # Inside of the for loop
+    #     user_ids.append(role_doc.user)
+    # Construct a list role_doc.users
+    UserRepo.get_users_by_ids(user_ids)
+
+    # When getting user back, make sure to get the right role from the user
+    # call .to_json and add in role
     if memorial_doc == None:
         return "Memorial not found", 404
 
     #Permission will come later
     return (memorial_doc.to_json()), 200
+
+# Make calls to userRepo
+# Then fetch users
 
 
 
