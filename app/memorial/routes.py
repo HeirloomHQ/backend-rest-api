@@ -48,7 +48,7 @@ def memorial():
             "page_theme": request.json.get("pageTheme", None),
         }
 
-        response, code = create.memorial(**kwargs)
+        response, code = create.create(**kwargs)
 
         if code != 201:
             return {"msg": response}, code
