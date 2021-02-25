@@ -48,3 +48,22 @@ def display_single_memorial_for_user(user_id, memorial_id):
         return "User does not have access to view the heirloom", 403
 
     return (memorial_doc.to_json(), role_doc.to_json() if role_doc != None else None), 200
+
+def display_members_for_single_memorial(memorial_id):
+    # 1. Check to see that the memorial exists
+    # 2. Get the memorial by its id
+    # 3. Print the information provided
+    if not memorial_id:
+        return {"msg": "Missing memorialID parameter"}, 400
+
+    memorial_doc = MemorialRepo.get_by_id(memorial_id)
+
+    if memorial_doc == None:
+        return "Memorial not found", 404
+
+    #Permission will come later
+    return (memorial_doc.to_json()), 200
+
+
+
+
