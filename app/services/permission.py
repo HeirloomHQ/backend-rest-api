@@ -8,7 +8,6 @@ class Action(Enum):
     VIEW = "canView"
     MANAGE = "canManage"
     POST = "canPost"
-    EDIT_PRIVACY = "canEditPrivacy"
     DELETE = "canDelete"
 
 

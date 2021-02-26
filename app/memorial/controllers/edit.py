@@ -15,7 +15,7 @@ def edit_memorial(user_id, memorial_id, first_name, last_name, description, born
 
     memorial = MemorialRepo.get_by_id(memorial_id)
 
-    if not can_user_execute(Action.EDIT_PRIVACY, RoleRepo.get_by_user_id(user_id), memorial):
+    if not can_user_execute(Action.MANAGE, RoleRepo.get_by_user_id(user_id), memorial):
         return {"msg": "Invalid permission"}, 400
 
     new_memorial = {"description": description,
