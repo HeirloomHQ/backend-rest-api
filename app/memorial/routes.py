@@ -59,7 +59,7 @@ def memorial():
 
 
 @memorial_bp.route('/<memorial_id>/settings', methods=['PUT'])
-@jwt_required
+@jwt_required()
 def settings(memorial_id):
     user_id = get_jwt_identity()
     kwargs = {
@@ -72,27 +72,12 @@ def settings(memorial_id):
         "home_town": request.json.get("homeTown", None),
         "cover_photo": request.json.get("coverPhoto", None),
         "page_theme": request.json.get("pageTheme", None),
+        "can_post": request.json.get("canPost", None),
+        "can_view": request.json.get("canView", None),
+        "can_manage": request.json.get("canManage", None),
+        "can_delete": request.json.get("canDelete", None)
     }
     response, code = edit.edit_memorial(user_id, memorial_id, **kwargs)
-
-    if code != 200:
-        return {"msg": response}, code
-
-    return {"memorial": response}, 200
-
-
-@memorial_bp.route('/<memorial_id>/permission_settings', methods=['PUT'])
-@jwt_required
-def permission_settings(memorial_id):
-    user_id = get_jwt_identity()
-    kwargs = {
-        "canPost": request.json.get("canPost", None),
-        "canView": request.json.get("canView", None),
-        "canManage": request.json.get("canManage", None),
-        "canDelete": request.json.get("canDelete", None)
-    }
-
-    response, code = edit.edit_memorial_settings(user_id, memorial_id, **kwargs)
 
     if code != 200:
         return {"msg": response}, code
