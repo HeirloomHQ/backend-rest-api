@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f04bd542-42e9-4847-aa41-1737a522b5ee",
+		"_postman_id": "b2d1c1c2-85f3-44f1-8cbd-be8f2f699ffd",
 		"name": "heirloom",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -69,7 +69,7 @@
 				{
 					"name": "Refresh",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Cookie",
@@ -124,7 +124,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/memorials/6035e134d72a5b4e337c2deb",
+							"raw": "http://localhost:5000/memorials/6035e243d72a5b4e337c2ded",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -132,7 +132,7 @@
 							"port": "5000",
 							"path": [
 								"memorials",
-								"6035e134d72a5b4e337c2deb"
+								"6035e243d72a5b4e337c2ded"
 							]
 						}
 					},
@@ -180,6 +180,36 @@
 							"port": "5000",
 							"path": [
 								"memorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Memorial",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pageTheme\": \"#FF7F59\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/memorials/6035e134d72a5b4e337c2deb/settings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memorials",
+								"6035e134d72a5b4e337c2deb",
+								"settings"
 							]
 						}
 					},
