@@ -1,8 +1,9 @@
 import bcrypt
-import uuid
-from app.auth.repos import UserRepo
+from app.profile.repos import UserRepo
 from app.auth import utils
-
+from app.invites.repos import InviteRepo
+from app.invites import utils as invite_utils
+from app.memorial.utils import create_member_role
 
 def signup(email, password, first_name, last_name):
     # validate input
@@ -24,12 +25,21 @@ def signup(email, password, first_name, last_name):
     password_hash = bcrypt.hashpw(password.encode('utf-8'), salt)
 
     user_to_save = {
-        "user_id": str(uuid.uuid4()), "email": email, "first_name": first_name, "last_name": last_name,
+        "email": email, "first_name": first_name, "last_name": last_name,
         "password_hash": password_hash, "salt": salt
     }
 
     # create user
-    saved_user = UserRepo.save(**user_to_save)
+    saved_user = UserRepo.create(**user_to_save)
+
+    # check for invites before returning
+    invites = InviteRepo.get_by_invitee_email(saved_user.email)
+    for invite in invites:
+        if invite_utils.is_valid_invite(invite):
+            invite.accepted = True
+            invite.user = saved_user.id
+            invite.save()
+            create_member_role(saved_user.id, invite.memorial)
 
     return saved_user.to_json(), 200
 

@@ -10,6 +10,7 @@ flask-jwt-extended = "*"
 bcrypt = "*"
 dnspython = "*"
 gunicorn = "*"
+sendgrid = "*"
 
 [dev-packages]
 python-dotenv = "*"
