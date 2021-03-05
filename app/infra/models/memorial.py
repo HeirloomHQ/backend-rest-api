@@ -9,7 +9,7 @@ class Memorial(Document):
     died = StringField(max_length=80)
     bio = StringField(max_length=80)
     home_town = StringField(max_length=50)
-    cover_photo = StringField(max_length=80)
+    cover_photo = StringField()
     page_theme = StringField(max_length=10)
 
     can_post = StringField(default="MANAGER")          # posting memories

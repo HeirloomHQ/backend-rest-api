@@ -63,7 +63,7 @@ def login():
     set_refresh_cookies(api_response, refresh_token, max_age=MAX_REFRESH)
     return api_response, 200
 
-@auth_bp.route('/refresh', methods=['POST'])
+@auth_bp.route('/refresh', methods=['GET'])
 @jwt_required(refresh=True)
 def refresh():
     # Create the new access token
