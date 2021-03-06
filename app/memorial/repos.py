@@ -63,3 +63,8 @@ class RoleRepo:
         role = Role(role=role, user=user, memorial=memorial)
         role.save()
         return role
+
+    @staticmethod
+    def get_by_memorial_id(memorial_id) -> Role:
+        role_list = Role.objects(memorial__in=[memorial_id])
+        return role_list

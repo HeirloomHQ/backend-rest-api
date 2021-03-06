@@ -83,3 +83,12 @@ def settings(memorial_id):
         return {"msg": response}, code
 
     return {"memorial": response}, 200
+
+
+@memorial_bp.route('/<memorial_id>/members', methods=['GET'])
+@jwt_required()
+def members(memorial_id):
+    user_id = get_jwt_identity()
+    response, code = display.display_members_for_single_memorial(user_id, memorial_id)
+    members_response = response
+    return {"Members": members_response}, 200
