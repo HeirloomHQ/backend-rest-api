@@ -24,11 +24,5 @@ class UserRepo:
 # Create get by ids which takes in user ids and returns a list of users
     @staticmethod
     def get_users_by_ids(ids) -> [User]:
-        # users = User.objects(id__in=ids)
-        # users = User.objects(id__in=[ids])
         users = User.objects(id__in=ids)
-
         return users
-        #
-        # user_list = User.objects(id=ids)
-        # return user_list[0] if len(user_list) > 0 else None

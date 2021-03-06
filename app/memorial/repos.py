@@ -64,18 +64,7 @@ class RoleRepo:
         role.save()
         return role
 
-#     Get by memorial_id / role_docs
-#    Takes in a memorial Id
-#    Returns list of role_ list
-
-#     Get all user with a role with said memorial_id
-
     @staticmethod
     def get_by_memorial_id(memorial_id) -> Role:
-        # role_list = Role.objects(memorial=memorial_id)
         role_list = Role.objects(memorial__in=[memorial_id])
-        # role_list = Role.objects(user__in=memorial_id)
-        # users = User.objects(id__in=ids)
-        # return role_list[0] if len(role_list) > 0 else None
-        # return role_list[0] if len(role_list) > 0 else None
         return role_list
