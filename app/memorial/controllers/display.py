@@ -83,20 +83,18 @@ def display_members_for_single_memorial(user_id, memorial_id):
     if memorial_doc is None:
         return "Memorial not found", 404
 
-    members = {}
-    user_roles = []
+    members = []
+    user_roles = {}
 
     # Stores user role types for json display
     for role_type in role_docs:
-        user_roles.append(str(role_type.role))
+        user_roles[str(role_type.user)] = role_type.role
 
     # Creates a JSON response displayed when api route is called
     for mem in user_doc:
-        members["email"] = mem.email
-        members["firstName"] = mem.first_name
-        members["id"] = str(mem.id)
-        members["lastName"] = mem.last_name
-        members["role"] = user_roles.pop(0)
+        member = mem.to_json()
+        member["role"] = user_roles[str(mem.id)]
+        members.append(member)
 
     # Checks user permission for validation that action can be exceuted
     allowed = can_user_execute(Action.VIEW, role_id, memorial_doc)

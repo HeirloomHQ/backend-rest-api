@@ -85,8 +85,8 @@ def settings(memorial_id):
     return {"memorial": response}, 200
 
 
-@memorial_bp.route('/members/<memorial_id>', methods=['GET'])
-@jwt_required(optional=True)
+@memorial_bp.route('/<memorial_id>/members', methods=['GET'])
+@jwt_required()
 def members(memorial_id):
     user_id = get_jwt_identity()
     response, code = display.display_members_for_single_memorial(user_id, memorial_id)
