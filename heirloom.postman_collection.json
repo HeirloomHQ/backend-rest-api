@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"manzanero.andrew@gmail.com\",\n    \"password\": \"test\"\n}",
+							"raw": "{\n    \"email\": \"test3@test.com\",\n    \"password\": \"test\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -210,6 +210,58 @@
 								"memorials",
 								"6035e134d72a5b4e337c2deb",
 								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get members",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/memorials/6035e134d72a5b4e337c2deb/members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memorials",
+								"6035e134d72a5b4e337c2deb",
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit member",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\": \"MANAGER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/memorials/6035e134d72a5b4e337c2deb/members/604714b2a30543b4560ab932",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memorials",
+								"6035e134d72a5b4e337c2deb",
+								"members",
+								"604714b2a30543b4560ab932"
 							]
 						}
 					},
