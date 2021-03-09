@@ -18,7 +18,7 @@ def invite(inviter_id, memorial_id, emails: [str]):
             return "{} is not a proper email".format(email), 400
 
     # check permissions
-    role = RoleRepo.get_by_user_id(inviter_id)
+    role = RoleRepo.get_by_user_memorial_id(inviter_id, memorial_id)
     memorial = MemorialRepo.get_by_id(memorial_id)
 
     allowed = permission.can_user_execute(permission.Action.MANAGE, role, memorial)
