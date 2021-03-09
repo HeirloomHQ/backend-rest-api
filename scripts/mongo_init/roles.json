@@ -17,7 +17,7 @@
     "$oid": "6035e243d72a5b4e337c2ded"
   },
   "user": {
-    "$oid": "60353086ebd856702a803f50"
+    "$oid": "60352fdae905671e24889dfb"
   },
   "role": "OWNER"
 },{
@@ -59,6 +59,28 @@
   },
   "memorial": {
     "$oid": "6038156668889ea7d643f635"
+  },
+  "user": {
+    "$oid": "60353086ebd856702a803f50"
+  },
+  "role": "MANAGER"
+},{
+  "_id": {
+    "$oid": "6047fbaf6f5e678a7c549f56"
+  },
+  "memorial": {
+    "$oid": "6035e134d72a5b4e337c2deb"
+  },
+  "user": {
+    "$oid": "60353086ebd856702a803f50"
+  },
+  "role": "OWNER"
+},{
+  "_id": {
+    "$oid": "6047fbef6f5e678a7c549f57"
+  },
+  "memorial": {
+    "$oid": "6035e243d72a5b4e337c2ded"
   },
   "user": {
     "$oid": "60353086ebd856702a803f50"
