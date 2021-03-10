@@ -1,13 +1,13 @@
-from dotenv import load_dotenv
 import os
 from pathlib import Path
 
 IS_PROD = os.environ.get("FLASK_ENV") == "production"
 
 if not IS_PROD:
-    load_dotenv()
+    import dotenv
+    dotenv.load_dotenv()
     sendgrid_file = Path("./sendgrid.env").resolve()
-    load_dotenv(sendgrid_file)
+    dotenv.load_dotenv(sendgrid_file)
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 MONGO_URI = os.environ.get("MONGO_URI")
