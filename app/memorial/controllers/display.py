@@ -1,5 +1,6 @@
-from app.memorial.repos import MemorialRepo, RoleRepo
+from app.memorial.repos import MemorialRepo, RoleRepo, RoleTypes
 from app.services.permission import Action, can_user_execute
+from app.profile.repos import UserRepo
 
 
 def display_all_user_memorials(user_id):
@@ -38,7 +39,7 @@ def display_single_memorial_for_user(user_id, memorial_id):
         return {"msg": "Missing memorialID parameter"}, 400
 
     memorial_doc = MemorialRepo.get_by_id(memorial_id)
-    role_doc = RoleRepo.get_by_user_id(user_id) if user_id != None else None
+    role_doc = RoleRepo.get_by_user_memorial_id(user_id) if user_id != None else None
 
     if memorial_doc == None:
         return "Memorial not found", 404
@@ -48,3 +49,51 @@ def display_single_memorial_for_user(user_id, memorial_id):
         return "User does not have access to view the heirloom", 403
 
     return (memorial_doc.to_json(), role_doc.to_json() if role_doc != None else None), 200
+
+
+def display_members_for_single_memorial(user_id, memorial_id):
+    # Validate that the memorial Id exists
+    if not memorial_id:
+        return {"msg": "Missing memorialID parameter"}, 400
+
+    # Retrieves user_id role type for permissions method
+    requester_role = RoleRepo.get_by_user_memorial_id(user_id, memorial_id)
+
+    # Retrieves memorial used to fetch members
+    memorial_doc = MemorialRepo.get_by_id(memorial_id)
+    if memorial_doc is None:
+        return "Memorial not found", 404
+
+    # Checks user permission for validation that action can be exceuted
+    allowed = can_user_execute(Action.VIEW, requester_role, memorial_doc)
+    if not allowed:
+        return "User does not have access to view the heirloom", 403
+
+    # Retrieves all roles that correspond to given memorial
+    role_docs = RoleRepo.get_by_memorial_id(memorial_id)
+
+    # Stores user_id for all roles connected to given memorial
+    user_ids = []
+    for role_doc in role_docs:
+        user_ids.append(str(role_doc.user))
+
+    # Retrieves all user documentation from user_ids provided
+    user_doc = UserRepo.get_users_by_ids(user_ids) if len(user_ids) else []
+
+    members = []
+    user_roles = {}
+
+    # Stores user role types for json display
+    for role_type in role_docs:
+        user_roles[str(role_type.user)] = role_type.role
+
+    # Creates a JSON response displayed when api route is called
+    for mem in user_doc:
+        if str(mem.id) == user_id: # skip if it's the requester
+            continue
+
+        member = mem.to_json()
+        member["role"] = user_roles[str(mem.id)]
+        members.append(member)
+
+    return members, 200

@@ -54,8 +54,13 @@ class RoleTypes(Enum):
 class RoleRepo:
 
     @staticmethod
-    def get_by_user_id(id) -> Role:
-        role_list = Role.objects(user=id)
+    def get_by_user_memorial_id(id, memorial) -> Role:
+        role_list = Role.objects(user=id, memorial=memorial)
+        return role_list[0] if len(role_list) > 0 else None
+
+    @staticmethod
+    def get_by_id(id) -> Role:
+        role_list = Role.objects(id=id)
         return role_list[0] if len(role_list) > 0 else None
 
     @staticmethod
@@ -63,3 +68,8 @@ class RoleRepo:
         role = Role(role=role, user=user, memorial=memorial)
         role.save()
         return role
+
+    @staticmethod
+    def get_by_memorial_id(memorial_id) -> Role:
+        role_list = Role.objects(memorial=memorial_id)
+        return role_list
