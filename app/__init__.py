@@ -6,6 +6,7 @@ from app.auth.routes import auth_bp
 from app.invites.routes import invite_bp
 from app.memorial.routes import memorial_bp
 from app.profile.routes import user_bp
+from app.memoir.routes import memoir_bp
 from app.constants import SECRET_KEY, MONGO_URI, IS_PROD
 
 connect(host=MONGO_URI)
@@ -16,6 +17,7 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(invite_bp)
 app.register_blueprint(memorial_bp)
 app.register_blueprint(user_bp)
+app.register_blueprint(memoir_bp)
 
 app.config['JWT_SECRET_KEY'] = SECRET_KEY
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
