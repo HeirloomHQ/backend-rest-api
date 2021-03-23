@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.memoir import controllers, utils
 from datetime import datetime
 from app.memorial.repos import MemorialRepo
+import json
 
 memoir_bp = Blueprint('memoir', __name__, url_prefix="/memoir")
 
@@ -15,11 +16,9 @@ def get_all(memorial_id):
     if memorial_doc is None:
         return "Memorial not found", 404
 
-    user_id = get_jwt_identity()
-
     memoirs = utils.get_all_memoirs(memorial_id)
 
-    return memoirs
+    return {"memoirs": memoirs}, 200
 
 
 # Get a specific memoir in a memorial
@@ -30,13 +29,12 @@ def get(memorial_id, memoir_id):
     if memorial_doc is None:
         return "Memorial not found", 404
 
-    user_id = get_jwt_identity()
     memoir = utils.get_memoir(memorial_id, memoir_id)
 
     if memoir is None:
         return "Memoir not found", 404
 
-    return memoir, 201
+    return memoir.to_json(), 201
 
 
 @memoir_bp.route('/<memorial_id>/add', methods=["GET"])
@@ -52,7 +50,7 @@ def add(memorial_id):
         "memorial_id": memorial_id,
         "user_id": user_id,
         "text": request.json.get("text", None),
-        "time": datetime.now()
+        "time": str(datetime.now())
     }
     response, code = controllers.add_memoir(**kwargs)
 
@@ -69,18 +67,44 @@ def edit(memorial_id, memoir_id):
     if memorial_doc is None:
         return "Memorial not found", 404
 
+    memoir = utils.get_memoir(memorial_id, memoir_id)
+    if memoir is None:
+        return "Memoir not found", 404
+
     user_id = get_jwt_identity()
+    user = utils.same_user(memoir_id, user_id)
+    if user is None:
+        return "User isn't creator", 404
+
     kwargs = {
-        "memorial": memorial_id,
-        "memoir": memoir_id,
+        "memorial_id": memorial_id,
+        "memoir_id": memoir_id,
         "text": request.json.get("text", None),
-        "time": datetime.now()
+        "time": str(datetime.now())
     }
-    pass
+    response, code = controllers.edit_memoir(**kwargs)
+
+    if code != 201:
+        return {"msg": response}, code
+
+    return {"memoir": response}, 201
 
 
 @memoir_bp.route('/<memorial_id>/<memoir_id>/remove', methods=["DELETE"])
 @jwt_required()
 def remove(memorial_id, memoir_id):
+    memorial_doc = MemorialRepo.get_by_id(memorial_id)
+    if memorial_doc is None:
+        return "Memorial not found", 404
+
+    memoir = utils.get_memoir(memorial_id, memoir_id)
+    if memoir is None:
+        return "Memoir not found", 404
     user_id = get_jwt_identity()
-    pass
+
+    response, code = controllers.remove_memoir(memorial_id, memoir_id, user_id)
+
+    if code != 201:
+        return {"msg": response}, code
+
+    return {"msg": "Memoir has been deleted"}, 201
