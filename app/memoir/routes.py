@@ -4,7 +4,7 @@ from app.memoir import controllers, utils
 from datetime import datetime
 from app.memorial.repos import MemorialRepo
 
-memoir_bp = Blueprint('auth', __name__, url_prefix="/memoir")
+memoir_bp = Blueprint('memoir', __name__, url_prefix="/memoir")
 
 
 # Get all memoirs in a memorial
@@ -39,7 +39,7 @@ def get(memorial_id, memoir_id):
     return memoir, 201
 
 
-@memoir_bp.route('/<memorial_id>/add', methods=["POST"])
+@memoir_bp.route('/<memorial_id>/add', methods=["GET"])
 @jwt_required()
 def add(memorial_id):
     user_id = get_jwt_identity()

@@ -15,5 +15,5 @@ class Memoir(Document):
             "creator": str(self.creator),
             "text": str(self.text),
             "creation_date": str(self.creation_date),
-            "last_updated:": str(self.last_updated_date)
+            "last_updated": str(self.last_updated_date)
         }

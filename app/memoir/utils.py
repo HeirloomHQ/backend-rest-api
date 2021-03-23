@@ -2,8 +2,7 @@ from app.infra.models.memoir import Memoir
 
 
 def create_memoir(memorial, creator, text, creation_date, last_updated) -> Memoir:
-    memoir = Memoir(memorial=memorial, creator=creator, text=text, creation_date=creation_date,
-                    last_updatd=last_updated)
+    memoir = Memoir(memorial=memorial, creator=creator, text=text, creation_date=creation_date, last_updated=last_updated)
     memoir.save()
     return memoir
 

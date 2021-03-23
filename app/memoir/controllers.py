@@ -10,7 +10,7 @@ def add_memoir(memorial_id, user_id, text, time):
         "creator": user_id,
         "text": text,
         "creation_date": time,
-        "last_updated:": time
+        "last_updated": time
     }
 
     created_memoir = create_memoir(**new_memoir)
