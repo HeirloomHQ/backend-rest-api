@@ -8,7 +8,7 @@ memoir_bp = Blueprint('memoir', __name__, url_prefix="/memoir")
 
 
 # Get all memoirs in a memorial
-@memoir_bp.route('/<memorial_id>/get', methods=["GET"])
+@memoir_bp.route('/<memorial_id>/all_memoirs', methods=["GET"])
 @jwt_required()
 def get_all(memorial_id):
     memorial_doc = MemorialRepo.get_by_id(memorial_id)
@@ -21,7 +21,7 @@ def get_all(memorial_id):
 
 
 # Get a specific memoir in a memorial
-@memoir_bp.route('/<memorial_id>/<memoir_id>/get', methods=["GET"])
+@memoir_bp.route('/<memorial_id>/<memoir_id>', methods=["GET"])
 @jwt_required()
 def get(memorial_id, memoir_id):
     memorial_doc = MemorialRepo.get_by_id(memorial_id)
@@ -36,7 +36,7 @@ def get(memorial_id, memoir_id):
     return memoir.to_json(), 201
 
 
-@memoir_bp.route('/<memorial_id>/add', methods=["GET"])
+@memoir_bp.route('/<memorial_id>', methods=["POST"])
 @jwt_required()
 def add(memorial_id):
     user_id = get_jwt_identity()
@@ -59,7 +59,7 @@ def add(memorial_id):
     return {"memoir": response}, 201
 
 
-@memoir_bp.route('/<memorial_id>/<memoir_id>/edit', methods=["PUT"])
+@memoir_bp.route('/<memorial_id>/<memoir_id>', methods=["PUT"])
 @jwt_required()
 def edit(memorial_id, memoir_id):
     memorial_doc = MemorialRepo.get_by_id(memorial_id)
