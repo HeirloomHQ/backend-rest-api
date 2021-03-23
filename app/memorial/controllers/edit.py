@@ -40,6 +40,7 @@ def edit_memorial(user_id, memorial_id, first_name, last_name, description, born
 
     return memorial.to_json(), 200
 
+
 def edit_role(requester_id, memorial_id, role_id, new_role):
     if not role_id:
         return {"msg": "Missing roleId"}, 400

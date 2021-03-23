@@ -10,6 +10,7 @@ def create_owner_role(user_id, memorial_id):
     }
     RoleRepo.create(**role)
 
+
 def create_manager_role(user_id, memorial_id):
     # create role
     role = {
