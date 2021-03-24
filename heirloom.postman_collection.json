@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b2d1c1c2-85f3-44f1-8cbd-be8f2f699ffd",
+		"_postman_id": "9258fe2f-1713-4081-8e7f-d06b32c6e055",
 		"name": "heirloom",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -352,6 +352,136 @@
 							"port": "5000",
 							"path": [
 								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "memoir",
+			"item": [
+				{
+					"name": "Add memoir",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"This is a sample text\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memoir",
+								"6035e134d72a5b4e337c2deb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit memoir",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"This is a sample text to delete!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb/605a133a2a8e686916ad6aea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memoir",
+								"6035e134d72a5b4e337c2deb",
+								"605a133a2a8e686916ad6aea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all memoirs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb/all_memoirs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memoir",
+								"6035e134d72a5b4e337c2deb",
+								"all_memoirs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single memoir",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb/605a133a2a8e686916ad6aea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memoir",
+								"6035e134d72a5b4e337c2deb",
+								"605a133a2a8e686916ad6aea"
 							]
 						}
 					},
