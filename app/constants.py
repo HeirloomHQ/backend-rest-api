@@ -19,3 +19,5 @@ FROM_EMAIL = 'amanzane@usc.edu'
 
 MAX_REFRESH = 60 * 60 * 24 * 31 # valid for 31 days
 INVITE_DAYS_TTL = 7
+IMG_TMP_UPLOAD = Path("./tmp").resolve()
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
