@@ -132,3 +132,4 @@ dmypy.json
 .vscode
 mongodata
 sendgrid.env
+aws.env
