@@ -7,7 +7,13 @@ from app.invites.routes import invite_bp
 from app.memorial.routes import memorial_bp
 from app.profile.routes import user_bp
 from app.memoir.routes import memoir_bp
-from app.constants import SECRET_KEY, MONGO_URI, IS_PROD
+from app.constants import SECRET_KEY, MONGO_URI, IS_PROD, IMG_TMP_UPLOAD
+import os
+
+
+# make temp dir if it doesn't exist
+if not os.path.isdir(IMG_TMP_UPLOAD):
+    os.mkdir(IMG_TMP_UPLOAD)
 
 connect(host=MONGO_URI)
 
