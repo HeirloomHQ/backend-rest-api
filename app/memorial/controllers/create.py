@@ -1,6 +1,7 @@
 from app.memorial.repos import MemorialRepo, RoleRepo, RoleTypes
 from app.memorial.utils import create_owner_role
 
+
 def create(creator_id, description, first_name,
            last_name, born, died,
            bio, home_town,
