@@ -36,6 +36,7 @@ def get(memorial_id, memoir_id):
     return memoir.to_json(), 201
 
 
+# Add a new memoir to memorial
 @memoir_bp.route('/<memorial_id>', methods=["POST"])
 @jwt_required()
 def add(memorial_id):
@@ -49,7 +50,8 @@ def add(memorial_id):
         "memorial_id": memorial_id,
         "user_id": user_id,
         "text": request.json.get("text", None),
-        "time": str(datetime.now())
+        "time": str(datetime.now()),
+        "media_url": request.json.get("media_url", None)
     }
     response, code = controllers.add_memoir(**kwargs)
 
@@ -59,6 +61,7 @@ def add(memorial_id):
     return {"memoir": response}, 201
 
 
+# Edit an existing memoir in a memorial
 @memoir_bp.route('/<memorial_id>/<memoir_id>', methods=["PUT"])
 @jwt_required()
 def edit(memorial_id, memoir_id):
@@ -79,7 +82,8 @@ def edit(memorial_id, memoir_id):
         "memorial_id": memorial_id,
         "memoir_id": memoir_id,
         "text": request.json.get("text", None),
-        "time": str(datetime.now())
+        "time": str(datetime.now()),
+        "media_url": request.json.get("media_url", None)
     }
     response, code = controllers.edit_memoir(**kwargs)
 

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b2d1c1c2-85f3-44f1-8cbd-be8f2f699ffd",
+		"_postman_id": "9258fe2f-1713-4081-8e7f-d06b32c6e055",
 		"name": "heirloom",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -266,35 +266,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "upload cover photo",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "img",
-									"type": "file",
-									"src": []
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:5000/image",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"image"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -398,7 +369,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"This is a sample text\"\r\n}",
+							"raw": "{\r\n    \"text\": \"This is a sample text\",\r\n    \"media_url\": \"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Falumni.usc.edu%2Fwp-content%2Fuploads%2F2016%2F04%2F2015105_USC_Spring_2015_1529.jpg&f=1&nofb=1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -427,7 +398,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"This is a sample text to delete!!\"\r\n}",
+							"raw": "{\r\n    \"text\": \"This is a sample text to delete!!\",\r\n    \"media_url\": \"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.-yPLrkpvw8zB6guT107HdQHaE2%26pid%3DApi&f=1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -435,7 +406,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb/605a133a2a8e686916ad6aea",
+							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb/606cd725e0fe1d7eb3da70af",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -444,7 +415,7 @@
 							"path": [
 								"memoir",
 								"6035e134d72a5b4e337c2deb",
-								"605a133a2a8e686916ad6aea"
+								"606cd725e0fe1d7eb3da70af"
 							]
 						}
 					},
