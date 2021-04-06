@@ -15,7 +15,7 @@ class Memoir(Document):
             "memorial": str(self.memorial),
             "creator": str(self.creator),
             "text": str(self.text),
-            "creation_date": str(self.creation_date),
-            "last_updated": str(self.last_updated),
-            "media_url": str(self.media_url)
+            "creationDate": str(self.creation_date),
+            "lastUpdated": str(self.last_updated),
+            "mediaUrl": str(self.media_url)
         }
