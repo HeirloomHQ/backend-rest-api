@@ -5,7 +5,7 @@ from app.invites.repos import InviteRepo
 from app.invites import utils as invite_utils
 from app.memorial.utils import create_member_role
 
-def signup(email, password, first_name, last_name):
+def signup(email, password, first_name, last_name, accept_invite):
     # validate input
     user = {"email": email, "password": password}
     for field, value in user.items():
@@ -33,13 +33,14 @@ def signup(email, password, first_name, last_name):
     saved_user = UserRepo.create(**user_to_save)
 
     # check for invites before returning
-    invites = InviteRepo.get_by_invitee_email(saved_user.email)
-    for invite in invites:
-        if invite_utils.is_valid_invite(invite):
-            invite.accepted = True
-            invite.user = saved_user.id
-            invite.save()
-            create_member_role(saved_user.id, invite.memorial)
+    if accept_invite is not None:
+        invites = InviteRepo.get_by_invitee_email(saved_user.email)
+        for invite in invites:
+            if invite_utils.is_valid_invite(invite):
+                invite.accepted = True
+                invite.user = saved_user.id
+                invite.save()
+                create_member_role(saved_user.id, invite.memorial)
 
     return saved_user.to_json(), 200
 

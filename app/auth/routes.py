@@ -20,6 +20,7 @@ def index():
         "password": request.json.get('password', None),
         "first_name": request.json.get('firstName', None),
         "last_name": request.json.get('lastName', None),
+        "accept_invite": request.json.get('acceptInvite', None)
     }
 
     controller_response, code = controllers.signup(**kwargs)

@@ -10,7 +10,7 @@ def display_all_user_memorials(user_id):
     memorial_docs, role_docs = MemorialRepo.get_by_user_id(user_id)
 
     if len(memorial_docs) == 0:
-        return "No memorials found for the authenticated user", 404
+        return ([], {}), 200
 
     # build a dict of memorial ids to role for the user
     role_map = {}
