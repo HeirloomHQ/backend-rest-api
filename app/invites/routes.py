@@ -12,9 +12,6 @@ def activate_invite(invite_id):
 
     response, code = get.get_activation(invite_id, token)
 
-    if code // 100 >= 4:
-        return {"msg": response}, code
-
     return redirect(response)
 
 

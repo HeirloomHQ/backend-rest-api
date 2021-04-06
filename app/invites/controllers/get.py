@@ -3,22 +3,23 @@ from app.profile.repos import UserRepo
 from app.memorial.repos import RoleRepo, RoleTypes
 from app.constants import CLIENT
 from app.invites import utils
+from urllib import parse
 
 
 def get_activation(invite_id, token):
     if token is None:
-        return "Missing token", 400
+        return CLIENT + "/fourofour", 404
 
     invite = InviteRepo.get_by_id(invite_id)
 
     if invite is None:
-        return "Invite not found", 404
+        return CLIENT + "/fourofour", 404
 
-    if utils.is_valid_invite(invite):
-        return "This invite is no longer valid", 401
+    if not utils.is_valid_invite(invite):
+        return CLIENT + "/fourofour", 404
 
     if token != invite.token:
-        return "Not authorized", 401
+        return CLIENT + "/fourofour", 404
 
     # send user to the memorial they are invited to if they do exist
     user = UserRepo.get_user_by_email(invite.invitee_email)
@@ -31,4 +32,4 @@ def get_activation(invite_id, token):
 
     # if the user doesn't exist send them to the signup page
     # and we will accept the invite at signup
-    return CLIENT + "?signup=true", 302
+    return CLIENT + "?signup=" + parse.quote(invite.invitee_email) + "&acceptInvite=true", 302
