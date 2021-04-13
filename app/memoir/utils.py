@@ -2,8 +2,8 @@ from app.infra.models.memoir import Memoir
 
 
 # Create a new memoir in memorial
-def create_memoir(memorial, creator, text, creation_date, last_updated) -> Memoir:
-    memoir = Memoir(memorial=memorial, creator=creator, text=text, creation_date=creation_date, last_updated=last_updated)
+def create_memoir(memorial, creator, text, creation_date, last_updated, media_url) -> Memoir:
+    memoir = Memoir(memorial=memorial, creator=creator, text=text, creation_date=creation_date, last_updated=last_updated, media_url=media_url)
     memoir.save()
     return memoir
 
