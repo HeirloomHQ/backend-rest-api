@@ -99,6 +99,8 @@ def memorial():
             "home_town": request.json.get("homeTown", None),
             "cover_photo": request.json.get("coverPhoto", None),
             "page_theme": request.json.get("pageTheme", None),
+            "can_view": request.json.get("canView", None),
+            "can_post": request.json.get("canPost", None)
         }
 
         response, code = create.create(**kwargs)
