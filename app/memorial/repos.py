@@ -10,7 +10,8 @@ class MemorialRepo:
     def create(first_name, last_name, description,
                born, died,
                bio, home_town,
-               cover_photo, page_theme
+               cover_photo, page_theme,
+               can_view, can_post
                ) -> Memorial:
         memorial = Memorial(
             first_name=first_name,
@@ -19,7 +20,8 @@ class MemorialRepo:
             born=born, died=died,
             bio=bio, home_town=home_town,
             cover_photo=cover_photo,
-            page_theme=page_theme
+            page_theme=page_theme,
+            can_view=can_view, can_post=can_post
         )
         memorial.save()
         return memorial
@@ -48,6 +50,8 @@ class RoleTypes(Enum):
     OWNER = auto()
     MANAGER = auto()
     MEMBER = auto()
+    LINK = auto()
+    ANYONE = auto()
 
 
 # Class to organize roles
