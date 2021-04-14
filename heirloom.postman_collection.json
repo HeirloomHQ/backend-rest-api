@@ -398,7 +398,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"This is a sample text\",\r\n    \"media_url\": \"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.OYUKE0uUkmtJhNUbIrKzhwHaEU%26pid%3DApi&f=1\"\r\n}",
+							"raw": "{\r\n    \"text\": \"This is a sample text abc\",\r\n    \"media_url\": \"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.OYUKE0uUkmtJhNUbIrKzhwHaEU%26pid%3DApi&f=1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -427,7 +427,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"This is a sample text to delete!!\",\r\n    \"media_url\": \"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Lndpf1OL77ROXppA9XddKgHaCa%26pid%3DApi&f=1\"\r\n}",
+							"raw": "{\r\n    \"text\": \"Some text\",\r\n    \"media_url\": \"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Lndpf1OL77ROXppA9XddKgHaCa%26pid%3DApi&f=1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -435,7 +435,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb/605a133a2a8e686916ad6aea",
+							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb/607667fe1768a14951f23cc1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -444,7 +444,7 @@
 							"path": [
 								"memoir",
 								"6035e134d72a5b4e337c2deb",
-								"605a133a2a8e686916ad6aea"
+								"607667fe1768a14951f23cc1"
 							]
 						}
 					},
@@ -511,6 +511,27 @@
 								"memoir",
 								"6035e134d72a5b4e337c2deb",
 								"605a133a2a8e686916ad6aea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a memoir",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/memoir/6035e134d72a5b4e337c2deb/605a133f2a8e686916ad6aeb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memoir",
+								"6035e134d72a5b4e337c2deb",
+								"605a133f2a8e686916ad6aeb"
 							]
 						}
 					},

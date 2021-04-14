@@ -39,3 +39,12 @@ def edit_memoir(memorial_id, memoir_id, text, time, media_url):
 
     return memoir.to_json(), 201
 
+
+def remove_memoir(memorial_id, memoir_id):
+    memoir = get_memoir(memorial_id, memoir_id)
+    if memoir is None:
+        return {"msg": "Memoir doesn't exist in memorial"}
+
+    memoir.delete()
+
+    return "Successfully deleted", 201
