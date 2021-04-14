@@ -1,4 +1,5 @@
 from app.memoir.utils import create_memoir, get_memoir
+from app.services.permission import Action, can_user_execute
 
 
 def add_memoir(memorial_id, user_id, text, time, media_url):
@@ -39,3 +40,12 @@ def edit_memoir(memorial_id, memoir_id, text, time, media_url):
 
     return memoir.to_json(), 201
 
+
+def remove_memoir(memorial_id, memoir_id):
+    memoir = get_memoir(memorial_id, memoir_id)
+    if memoir is None:
+        return {"msg": "Memoir doesn't exist in memorial"}
+
+    memoir.delete()
+
+    return "Successfully deleted", 201

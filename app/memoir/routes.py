@@ -74,9 +74,8 @@ def edit(memorial_id, memoir_id):
         return "Memoir not found", 404
 
     user_id = get_jwt_identity()
-    user = utils.same_user(memoir_id, user_id)
-    if user is None:
-        return "User isn't creator", 404
+    if not utils.same_user(memoir_id, user_id):
+        return "Cannot edit: User isn't creator", 404
 
     kwargs = {
         "memorial_id": memorial_id,
@@ -93,3 +92,24 @@ def edit(memorial_id, memoir_id):
     return {"memoir": response}, 201
 
 
+# Delete a memoir
+@memoir_bp.route('/<memorial_id>/<memoir_id>', methods=["DELETE"])
+@jwt_required()
+def remove(memorial_id, memoir_id):
+    memorial_doc = MemorialRepo.get_by_id(memorial_id)
+    if memorial_doc is None:
+        return "Memorial not found", 404
+
+    memoir = utils.get_memoir(memorial_id, memoir_id)
+    if memoir is None:
+        return "Memoir not found", 404
+
+    user_id = get_jwt_identity()
+    if not utils.same_user(memoir_id, user_id):
+        return "Cannot remove: User isn't creator", 404
+    elif not utils.is_admin(memorial_id, user_id):
+        return "Cannot remove: User isn't admin", 404
+
+    response, code = controllers.remove_memoir(memorial_id, memoir_id)
+
+    return {"msg": response}, 201
