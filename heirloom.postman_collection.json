@@ -145,7 +145,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"test\",\n    \"lastName\": \"test\",\n    \"description\": \"test-am/email-invites\",\n    \"born\": \"Jan 2nd\",\n    \"died\": \"Jan 3rd\",\n    \"bio\": \"one helluva test\",\n    \"homeTown\": \"LA\",\n    \"coverPhoto\": \"http://profilepic\",\n    \"pageTheme\": \"#FF7F59\"\n}",
+							"raw": "{\n    \"firstName\": \"delete this\",\n    \"lastName\": \"test\",\n    \"description\": \"test-am/email-invites\",\n    \"born\": \"Jan 2nd\",\n    \"died\": \"Jan 3rd\",\n    \"bio\": \"one helluva test\",\n    \"homeTown\": \"LA\",\n    \"coverPhoto\": \"http://profilepic\",\n    \"pageTheme\": \"#FF7F59\",\n    \"canPost\": \"MEMBER\",\n    \"canView\": \"ANYONE\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -291,6 +291,26 @@
 							"port": "5000",
 							"path": [
 								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete memorial",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/memorials/6078d9336dbd3f9b0814c0c1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"memorials",
+								"6078d9336dbd3f9b0814c0c1"
 							]
 						}
 					},
