@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from app.memorial.controllers import display, create, edit
+from app.memorial.controllers import display, create, edit, delete
 
 memorial_bp = Blueprint('memorial', __name__, url_prefix="/memorials")
 
@@ -110,3 +110,12 @@ def memorial():
 
         return {"memorial": response}, 201
 
+
+@memorial_bp.route('/<memorial_id>', methods=['DELETE'])
+@jwt_required()
+def delete_memorial(memorial_id):
+    user_id = get_jwt_identity()
+
+    response, code = delete.delete_memorial(memorial_id, user_id)
+
+    return response, code
