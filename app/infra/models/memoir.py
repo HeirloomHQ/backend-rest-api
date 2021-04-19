@@ -7,6 +7,7 @@ class Memoir(Document):
     text = StringField()
     creation_date = StringField()
     last_updated = StringField()
+    media_url = StringField()
 
     def to_json(self, *args, **kwargs):
         return {
@@ -14,6 +15,7 @@ class Memoir(Document):
             "memorial": str(self.memorial),
             "creator": str(self.creator),
             "text": str(self.text),
-            "creation_date": str(self.creation_date),
-            "last_updated": str(self.last_updated)
+            "creationDate": str(self.creation_date),
+            "lastUpdated": str(self.last_updated),
+            "mediaUrl": str(self.media_url)
         }
